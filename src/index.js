@@ -1,15 +1,20 @@
-import _ from "lodash";
-import printMe from "./print";
-function component() {
-  const element = document.createElement("div");
-  const btn = document.createElement("button");
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-  btn.innerHTML = "Click me and check console";
-  btn.onclick = printMe;
-  element.appendChild(btn);
+function getComponent() {
+  return import("lodash")
+    .then(({ default: _ }) => {
+      const element = document.createElement("div");
+      element.innerHTML = _join(["Hello ", "webpack"]);
 
-  return element;
+      return element;
+    })
+    .catch((error) => {
+      "An error occured while loading component";
+    });
+
+  /* OR using async */
+
+  /*  */
 }
 
-document.body.appendChild(component());
+getComponent().then((component) => {
+  document.body.appendChild(component);
+});
