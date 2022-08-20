@@ -1,4 +1,4 @@
+import _ from "lodash";
 export default () => {
-  console.log("I get called from print.js");
-  console.log("Hello  there");
+  console.log(_.join(["Hello", "World"]));
 };
